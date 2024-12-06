@@ -5,8 +5,8 @@ import { fieldWrapperProps } from "@/Constants/Typescript";
 import dropdownIcon from "@/public/fields/long-answer-icon.svg";
 import reorderIcon from "@/public/reorder-icon.svg";
 
-import InputField from "../../Fields/InputField";
 import NextImage from "../Images";
+import TextareaField from "../../Fields/TextareaField";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	title = "",
@@ -32,7 +32,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 					/>
 				</div>
 			</div>
-			<InputField
+			<TextareaField
 				placeholder={placeholder}
 				isRequired={isRequired}
 				maxLength={maxLength}

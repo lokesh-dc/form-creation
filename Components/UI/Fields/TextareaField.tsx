@@ -1,24 +1,23 @@
+import { textareaProps } from "@/Constants/Typescript";
 import React, { ReactElement } from "react";
 
-import { inputFieldProps } from "@/Constants/Typescript";
-
-const InputField: React.FC<inputFieldProps> = ({
-	type = "text",
+const TextareaField: React.FC<textareaProps> = ({
 	placeholder = "",
 	isRequired = true,
-	maxLength = 200,
+	maxLength = 400,
 	disabled = false,
+	cols = 20,
 }): ReactElement => {
 	return (
-		<input
-			type={type}
-			disabled={disabled}
+		<textarea
 			className="border border-gray-200 rounded-md p-1"
 			placeholder={placeholder}
 			required={isRequired}
 			maxLength={maxLength}
+			disabled={disabled}
+			cols={cols}
 		/>
 	);
 };
 
-export default InputField;
+export default TextareaField;
