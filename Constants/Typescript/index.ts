@@ -1,12 +1,14 @@
-import { formTitleField } from "../Fields";
+import { fieldDisabled, fieldOrder, fieldType, formFields, formTitleField } from "../Fields";
 
 export interface fieldWrapperProps {
     title: string;
+    fieldType: string;
     description: string;
     placeholder: string;
     isRequired: boolean;
     maxLength?: number;
-    options?: Array<string>
+    options?: Array<string>;
+    disabled: boolean
 }
 
 export interface imageProps {
@@ -66,6 +68,18 @@ export interface formCreationProps {
     // title: string;
 }
 
+export interface fieldValidator {
+    [fieldType]: string;
+    [fieldOrder]: number;
+    [fieldDisabled]: boolean;
+}
+
 export interface creationFormStateProps {
     [formTitleField]?: string;
+    [formFields]?: Array<fieldValidator>
+}
+
+
+export interface fieldsContainer {
+    data?: Array<fieldValidator>
 }

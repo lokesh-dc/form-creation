@@ -10,7 +10,7 @@ const InputField: React.FC<inputFieldProps> = ({
 	maxLength = 200,
 	disabled = false,
 	changeEvent = () => {},
-	isNoBorderVariant = true,
+	isNoBorderVariant = false,
 	classes = "",
 }): ReactElement => {
 	return (

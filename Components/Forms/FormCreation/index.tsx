@@ -9,7 +9,16 @@ import PreviewIcon from "@/public/external-link.svg";
 import addQuestionIcon from "@/public/add-icon.svg";
 
 import InputField from "@/Components/Fields/InputField";
-import { formTitleField } from "@/Constants/Fields";
+import {
+	fieldDisabled,
+	fieldOrder,
+	fieldType,
+	formFields,
+	formTitleField,
+	ShortAnswerFieldType,
+	SingleSelectFieldType,
+} from "@/Constants/Fields";
+import FieldsContainer from "@/Components/Containers/Fields";
 
 const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 	const [formDetails, setFormDetails] = useState<creationFormStateProps>({});
@@ -27,6 +36,22 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 		} catch (err) {}
 		{
 		}
+	};
+
+	const handleFieldAddition = () => {
+		const initialFieldSetup = {
+			id: "",
+			[fieldType]: ShortAnswerFieldType,
+			[fieldOrder]: 1,
+			[fieldDisabled]: true,
+		};
+
+		setFormDetails((prev) => {
+			return {
+				...prev,
+				formFields: [...(prev.formFields || []), initialFieldSetup],
+			};
+		});
 	};
 
 	return (
@@ -48,9 +73,10 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			</div>
 			<hr />
 			<div className="p-2 flex items-center flex-col gap-2">
+				<FieldsContainer data={formDetails?.formFields} />
 				<PrimaryButton
 					title="Add Question"
-					actionOnClick={() => console.log("primary - clicked")}
+					actionOnClick={handleFieldAddition}
 					buttonType={"secondary"}
 					leftIcon={addQuestionIcon}
 					classes="w-fit"
