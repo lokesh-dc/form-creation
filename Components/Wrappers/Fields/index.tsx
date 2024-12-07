@@ -47,7 +47,11 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 				isRequired={false}
 				name={"123"}
 			/> */}
-			<DateInputField placeholder={""} isRequired={false} />
+			<DateInputField
+				placeholder={""}
+				isRequired={false}
+				changeEvent={() => {}}
+			/>
 		</div>
 	);
 };

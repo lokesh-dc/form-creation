@@ -8,10 +8,12 @@ const PrimaryButton: React.FC<ButtonProps> = ({
 	buttonType = "secondary",
 	actionOnClick = () => {},
 	rightIcon,
+	leftIcon,
+	classes = "",
 }): ReactElement => {
 	const buttonStyles: buttonTypes = {
 		primary: "bg-black text-white",
-		secondary: "",
+		secondary: "hover:bg-gray-200",
 	};
 
 	return (
@@ -21,8 +23,9 @@ const PrimaryButton: React.FC<ButtonProps> = ({
 					actionOnClick();
 					event.preventDefault();
 				}}
-				className={`flex gap-1 items-center py-1 px-2 border border-gray-200 rounded-xl ${buttonStyles[buttonType]}`}
+				className={`font-semibold flex gap-1 items-center py-1 px-2 border border-gray-200 rounded-xl ${buttonStyles[buttonType]} ${classes}`}
 			>
+				{leftIcon ? <NextImage src={leftIcon} height={10} width={10} /> : null}
 				{title}
 				{rightIcon ? (
 					<NextImage src={rightIcon} height={10} width={10} />

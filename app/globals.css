@@ -28,9 +28,15 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea :focus {
   outline: #000000;
   border: 1px solid;
+}
+
+input:focus.no-border-variant,
+textarea:focus.no-border-variant {
+  outline: #000000;
+  border: none;
 }
 
 input[type="radio"] {

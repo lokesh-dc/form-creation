@@ -1,3 +1,4 @@
+import { formTitleField } from "../Fields";
 
 export interface fieldWrapperProps {
     title: string;
@@ -30,7 +31,9 @@ export interface inputFieldCommonprops {
 export interface inputFieldProps extends inputFieldCommonprops {
     type?: string;
     value?: string | number;
-
+    changeEvent: Function;
+    isNoBorderVariant?: boolean
+    classes?: string
 }
 
 export interface textareaProps extends inputFieldCommonprops {
@@ -49,7 +52,9 @@ export interface ButtonProps {
     title: string;
     actionOnClick: Function;
     buttonType: string;
-    rightIcon: string
+    leftIcon?: string;
+    rightIcon?: string;
+    classes?: string
 }
 
 
@@ -59,4 +64,8 @@ export interface buttonTypes {
 
 export interface formCreationProps {
     // title: string;
+}
+
+export interface creationFormStateProps {
+    [formTitleField]?: string;
 }
