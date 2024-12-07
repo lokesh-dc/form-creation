@@ -30,3 +30,7 @@ textarea:focus {
   outline: #000000;
   border: 1px solid;
 }
+
+input[type="radio"] {
+  accent-color: #000 !important;
+}

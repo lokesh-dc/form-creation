@@ -7,6 +7,8 @@ import reorderIcon from "@/public/reorder-icon.svg";
 
 import NextImage from "../Images";
 import TextareaField from "../../Fields/TextareaField";
+import InputField from "../../Fields/InputField";
+import SingleSelectField from "../../Fields/SignleSelectField";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	title = "",
@@ -32,10 +34,25 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 					/>
 				</div>
 			</div>
+			{/* <InputField
+				placeholder={placeholder}
+				isRequired={isRequired}
+				maxLength={maxLength}
+			/>
 			<TextareaField
 				placeholder={placeholder}
 				isRequired={isRequired}
 				maxLength={maxLength}
+			/> */}
+			<SingleSelectField
+				options={[
+					{ label: "option 1", value: "option1" },
+					{ label: "option 1", value: "option1" },
+					{ label: "option 1", value: "option1" },
+					{ label: "option 1", value: "option1" },
+				]}
+				isRequired={false}
+				name={"123"}
 			/>
 		</div>
 	);
