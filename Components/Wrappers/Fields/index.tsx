@@ -6,10 +6,7 @@ import dropdownIcon from "@/public/fields/long-answer-icon.svg";
 import reorderIcon from "@/public/reorder-icon.svg";
 
 import NextImage from "../Images";
-import TextareaField from "../../Fields/TextareaField";
-import InputField from "../../Fields/InputField";
-import SingleSelectField from "../../Fields/SignleSelectField";
-import DateInputField from "../../Fields/DateInputField";
+import DateInputField from "@/Components/Fields/DateInputField";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	title = "",

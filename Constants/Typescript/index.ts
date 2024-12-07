@@ -43,3 +43,20 @@ export interface singleSelectFieldProps {
     isRequired: boolean;
     disabled?: boolean;
 }
+
+export interface ButtonProps {
+    background?: string;
+    title: string;
+    actionOnClick: Function;
+    buttonType: string;
+    rightIcon: string
+}
+
+
+export interface buttonTypes {
+    [key: string]: string | undefined
+}
+
+export interface formCreationProps {
+    // title: string;
+}

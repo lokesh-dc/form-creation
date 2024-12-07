@@ -1,17 +1,11 @@
-import FieldWrapper from "@/Components/UI/Wrappers/Fields";
+"use client";
+import FormCreation from "@/Components/Forms/FormCreation";
 
 export default function Home() {
 	return (
-		<div className="flex flex-col gap-4 p-10">
-			<FieldWrapper
-				title={
-					"Explain in a single sentence, why are you the best fit for this role?"
-				}
-				description={"Which front-end framework do you prefer working with?"}
-				placeholder={""}
-				isRequired={false}
-				maxLength={0}
-			/>
+		<div className="flex items-center justify-center w-screen h-screen flex-col gap-4 p-10">
+			<h1 className="text-2xl font-bold">Create New Form</h1>
+			<FormCreation />
 		</div>
 	);
 }
