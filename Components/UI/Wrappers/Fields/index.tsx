@@ -46,12 +46,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 				maxLength={maxLength}
 			/> */}
 			{/* <SingleSelectField
-				options={[
-					{ label: "option 1", value: "option1" },
-					{ label: "option 1", value: "option1" },
-					{ label: "option 1", value: "option1" },
-					{ label: "option 1", value: "option1" },
-				]}
+				options={["option 1", "option 1", "option 1", "option 1", "option 1"]}
 				isRequired={false}
 				name={"123"}
 			/> */}

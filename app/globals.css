@@ -34,3 +34,7 @@ textarea:focus {
 input[type="radio"] {
   accent-color: #000 !important;
 }
+
+input:disabled {
+  background-color: #f6f8fa;
+}

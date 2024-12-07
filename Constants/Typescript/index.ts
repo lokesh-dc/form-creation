@@ -1,14 +1,11 @@
-interface optionsProps {
-    label: string;
-    value: string;
-}
+
 export interface fieldWrapperProps {
     title: string;
     description: string;
     placeholder: string;
     isRequired: boolean;
     maxLength?: number;
-    options?: Array<optionsProps>
+    options?: Array<string>
 }
 
 export interface imageProps {
@@ -42,7 +39,7 @@ export interface textareaProps extends inputFieldCommonprops {
 
 export interface singleSelectFieldProps {
     name: string;
-    options?: Array<optionsProps>;
+    options?: Array<string>;
     isRequired: boolean;
     disabled?: boolean;
 }

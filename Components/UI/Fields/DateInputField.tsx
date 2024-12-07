@@ -17,6 +17,7 @@ const DateInputField: React.FC<inputFieldProps> = ({
 				type="date"
 				placeholder={placeholder}
 				isRequired={false}
+				disabled={true}
 			/>
 		</>
 	);
