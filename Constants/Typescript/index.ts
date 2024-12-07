@@ -22,9 +22,11 @@ export interface inputFieldCommonprops {
     name?: string;
     placeholder: string;
     isRequired: boolean;
-    maxLength: number;
+    maxLength?: number;
     disabled?: boolean;
     autofocus?: boolean;
+    min?: string;
+    max?: string;
 }
 
 

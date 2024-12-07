@@ -9,6 +9,7 @@ import NextImage from "../Images";
 import TextareaField from "../../Fields/TextareaField";
 import InputField from "../../Fields/InputField";
 import SingleSelectField from "../../Fields/SignleSelectField";
+import DateInputField from "../../Fields/DateInputField";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	title = "",
@@ -44,7 +45,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 				isRequired={isRequired}
 				maxLength={maxLength}
 			/> */}
-			<SingleSelectField
+			{/* <SingleSelectField
 				options={[
 					{ label: "option 1", value: "option1" },
 					{ label: "option 1", value: "option1" },
@@ -53,7 +54,8 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 				]}
 				isRequired={false}
 				name={"123"}
-			/>
+			/> */}
+			<DateInputField placeholder={""} isRequired={false} />
 		</div>
 	);
 };
