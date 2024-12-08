@@ -1,8 +1,12 @@
 export const formTitleField = "formTitle";
 export const formFields = "formFields";
+
 export const fieldType = "fieldType";
 export const fieldOrder = "order";
 export const fieldDisabled = "disabled";
+export const fieldTitle = "title";
+export const fieldDescription = "description";
+export const fieldOptions = "options";
 
 // Field Types
 export const SingleSelectFieldType = "SingleSelectFieldType";

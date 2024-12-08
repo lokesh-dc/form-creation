@@ -10,8 +10,11 @@ import PreviewIcon from "@/public/external-link.svg";
 import addQuestionIcon from "@/public/add-icon.svg";
 
 import {
+	fieldDescription,
 	fieldDisabled,
+	fieldOptions,
 	fieldOrder,
+	fieldTitle,
 	fieldType,
 	formTitleField,
 	ShortAnswerFieldType,
@@ -24,6 +27,7 @@ import InputField from "@/Components/Fields/InputField";
 
 const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 	const [formDetails, setFormDetails] = useState<creationFormStateProps>({});
+	const [isFormEditionPhase, toggleFormEditionPhase] = useState("");
 
 	const handleFormChanges = (event: {
 		preventDefault(): unknown;
@@ -42,13 +46,17 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 	};
 
 	const handleFieldAddition = ({ type }: { type: string }) => {
-		const initialFieldSetup = {
+		let initialFieldSetup = {
 			id: nanoid(),
 			[fieldType]: type || ShortAnswerFieldType,
 			[fieldOrder]: 1,
-			[fieldDisabled]: true,
+			[fieldDisabled]: false,
+			[fieldDescription]: "",
+			[fieldTitle]: "",
+			[fieldOptions]: [],
 		};
 
+		toggleFormEditionPhase(initialFieldSetup?.id);
 		setFormDetails((prev) => {
 			return {
 				...prev,
@@ -59,7 +67,6 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 
 	const handleFieldChanges = (field: fieldValidator) => {
 		const fields = formDetails?.formFields || [];
-
 		for (let index = 0; index < fields?.length; index++) {
 			if (field?.id == fields[index]?.id) {
 				let updatedField = {
@@ -75,8 +82,6 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			}
 		}
 	};
-
-	console.log({ formDetails });
 
 	return (
 		<div className="border border-gray-200 rounded-xl flex flex-col gap-1">
@@ -99,10 +104,13 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			<div className="p-2 flex items-center flex-col gap-2">
 				<FieldsContainer
 					data={formDetails?.formFields}
-					isFormCreating={true}
+					isFormCreating={isFormEditionPhase}
 					handleFieldChanges={handleFieldChanges}
+					handleFieldSave={() => toggleFormEditionPhase("")}
+					isAdminSideForm={true}
 				/>
 				<QuestionsTypeDropDown
+					disabled={isFormEditionPhase}
 					buttonTitle="Add Question"
 					buttonIconSrc={addQuestionIcon}
 					handleDropdownSelection={handleFieldAddition}

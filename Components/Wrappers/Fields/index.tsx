@@ -11,6 +11,7 @@ import {
 	LongAnwerFieldType,
 	ShortAnswerFieldType,
 	SingleSelectFieldType,
+	UrlFieldType,
 } from "@/Constants/Fields";
 
 import NextImage from "../Images";
@@ -19,6 +20,8 @@ import SingleSelectField from "@/Components/Fields/SignleSelectField";
 import InputField from "@/Components/Fields/InputField";
 import TextareaField from "@/Components/Fields/TextareaField";
 import QuestionsTypeDropdown from "@/Components/Dropdowns/QuestionsType";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
+import UrlInputField from "@/Components/Fields/UrlField";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	fieldId = "",
@@ -30,15 +33,20 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	maxLength = 200,
 	fieldType = "",
 	disabled = false,
-	isFormCreating = false,
+	isFormCreating = "",
 	handleFieldChanges,
+	handleFieldSave,
+	isAdminSideForm = false,
 }): ReactElement => {
+	const changeEvent = ({ name, value }: { name: string; value: string }) =>
+		handleFieldChanges({ id: fieldId, [name]: value });
+
 	const fieldProps = {
-		disabled,
+		disabled: disabled || isAdminSideForm,
 		placeholder,
 		name,
 		title,
-		changeEvent: () => {},
+		changeEvent: changeEvent,
 		isRequired,
 		maxLength,
 		isFormCreating,
@@ -47,10 +55,13 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 		<div className="border border-gray-200 rounded-xl p-4  w-full flex flex-col gap-2">
 			<div className="flex justify-between items-start">
 				<div className="w-full flex flex-col gap-1 ">
-					{isFormCreating ? (
+					{isFormCreating == fieldId ? (
 						<InputField
 							placeholder={title}
-							changeEvent={() => {}}
+							changeEvent={(event: { target: { value: any } }) => {
+								const { value } = event.target;
+								changeEvent({ name: "title", value });
+							}}
 							isRequired={false}
 							isNoBorderVariant={true}
 							classes="w-full"
@@ -59,10 +70,13 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 						<label className="font-semibold">{title}</label>
 					) : null}
 
-					{isFormCreating ? (
+					{isFormCreating == fieldId ? (
 						<InputField
 							placeholder={description}
-							changeEvent={() => {}}
+							changeEvent={(event: { target: { value: any } }) => {
+								const { value } = event.target;
+								changeEvent({ name: "description", value });
+							}}
 							isRequired={false}
 							isNoBorderVariant={true}
 							classes="w-full"
@@ -73,6 +87,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 				</div>
 				<div className="flex gap-2">
 					<QuestionsTypeDropdown
+						// @ts-ignore
 						buttonIconSrc={fieldTypeDetails[fieldType]?.icon}
 						buttonSizes={{ height: 20, width: 20 }}
 						buttonRightIcon={dropdownIcon}
@@ -80,6 +95,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 						handleDropdownSelection={({ type }: { type: string }) => {
 							handleFieldChanges({ id: fieldId, fieldType: type });
 						}}
+						disabled={""}
 					/>
 					<NextImage
 						alt="dropdown icon"
@@ -102,7 +118,20 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 				<TextareaField {...fieldProps} />
 			) : null}
 
+			{fieldType == UrlFieldType ? <UrlInputField {...fieldProps} /> : null}
+
 			{fieldType == DateFieldType ? <DateInputField {...fieldProps} /> : null}
+
+			{isFormCreating == fieldId ? (
+				<div className="flex justify-start">
+					<PrimaryButton
+						title="Save"
+						actionOnClick={handleFieldSave}
+						buttonType={"primary"}
+						classes="w-[150px]"
+					/>
+				</div>
+			) : null}
 		</div>
 	);
 };

@@ -11,11 +11,13 @@ const QuestionsType: React.FC<questionTypeProps> = ({
 	handleDropdownSelection,
 	buttonSizes = {},
 	isButtonNoBorderVariant = false,
+	disabled = "",
 }): ReactElement => {
 	const [isMenuVisible, toggleMenuVisibility] = useState(false);
 	return (
 		<div className="relative">
 			<PrimaryButton
+				disabled={disabled}
 				title={buttonTitle}
 				actionOnClick={() => toggleMenuVisibility(!isMenuVisible)}
 				buttonType={"secondary"}
@@ -27,7 +29,7 @@ const QuestionsType: React.FC<questionTypeProps> = ({
 			/>
 
 			<div
-				className={`absolute p-2 rounded-xl z-2000 min-w-[200px] top-[110%] right-0 ${
+				className={`absolute p-2 rounded-xl z-10 min-w-[200px] top-[110%] right-0 ${
 					isMenuVisible ? "flex flex-col gap-1" : "hidden"
 				} bg-white shadow-md w-full cursor-pointer border border-gray-200`}
 			>

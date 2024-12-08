@@ -1,4 +1,4 @@
-import { fieldDisabled, fieldOrder, fieldType, formFields, formTitleField } from "../Fields";
+import { fieldDescription, fieldDisabled, fieldOptions, fieldOrder, fieldTitle, fieldType, formFields, formTitleField } from "../Fields";
 
 export interface fieldWrapperProps {
     name: string;
@@ -11,9 +11,10 @@ export interface fieldWrapperProps {
     maxLength?: number;
     options?: Array<string>;
     disabled: boolean;
-    isFormCreating: boolean;
+    isFormCreating: string;
     handleFieldChanges: Function;
-
+    handleFieldSave: Function;
+    isAdminSideForm: boolean
 }
 
 export interface imageProps {
@@ -32,7 +33,7 @@ export interface inputFieldCommonprops {
     autofocus?: boolean;
     min?: string;
     max?: string;
-    isFormCreating?: boolean
+    isFormCreating?: string
 }
 
 
@@ -67,7 +68,8 @@ export interface ButtonProps {
         height?: number;
         width?: number
     };
-    isNoBorderVariant?: boolean
+    isNoBorderVariant?: boolean;
+    disabled?: string
 }
 
 
@@ -84,6 +86,9 @@ export interface fieldValidator {
     [fieldType]: string;
     [fieldOrder]: number;
     [fieldDisabled]: boolean;
+    [fieldOptions]?: Array<any>;
+    [fieldDescription]?: string;
+    [fieldTitle]: string;
 }
 
 export interface creationFormStateProps {
@@ -94,12 +99,14 @@ export interface creationFormStateProps {
 
 export interface fieldsContainer {
     data?: Array<fieldValidator>;
-    isFormCreating: boolean;
+    isFormCreating: string;
     handleFieldChanges: Function;
-
+    handleFieldSave: Function;
+    isAdminSideForm: boolean
 }
 
 export interface questionTypeProps {
+    disabled: string;
     buttonTitle?: string | undefined;
     buttonIconSrc?: string;
     handleDropdownSelection: Function;

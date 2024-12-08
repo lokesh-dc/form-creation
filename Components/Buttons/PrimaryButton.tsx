@@ -12,6 +12,7 @@ const PrimaryButton: React.FC<ButtonProps> = ({
 	classes = "",
 	buttonSizes,
 	isNoBorderVariant = false,
+	disabled = "",
 }): ReactElement => {
 	const buttonStyles: buttonTypes = {
 		primary: "bg-black text-white",
@@ -21,11 +22,12 @@ const PrimaryButton: React.FC<ButtonProps> = ({
 	return (
 		<>
 			<button
+				disabled={disabled ? true : false}
 				onClick={(event: React.MouseEvent) => {
 					actionOnClick();
 					event.preventDefault();
 				}}
-				className={`font-semibold flex gap-1 justify-center items-center ${
+				className={`disabled:bg-gray-100 disabled:cursor-not-allowed font-semibold flex gap-1 justify-center items-center ${
 					isNoBorderVariant ? "p-1" : "border border-gray-200 py-1 px-2"
 				} rounded-xl ${buttonStyles[buttonType]} ${classes}`}
 			>
