@@ -10,3 +10,21 @@ export const ShortAnswerFieldType = "ShortAnswerFieldType";
 export const LongAnwerFieldType = "LongAnwerFieldType";
 export const UrlFieldType = "UrlFieldType";
 export const DateFieldType = "DateFieldType";
+
+import longAnswerIcon from "@/public/fields/long-answer-icon.svg";
+import shortAnswerIcon from "@/public/fields/short-answer-icon.svg";
+import singleSelectIcon from "@/public/fields/single-select-icon.svg";
+import urlIcon from "@/public/fields/url-icon.svg";
+import dateIcon from "@/public/fields/date-icon.svg";
+
+export const fieldTypes = [
+	{
+		label: "Single Select",
+		type: SingleSelectFieldType,
+		icon: singleSelectIcon,
+	},
+	{ label: "Short Answer", type: ShortAnswerFieldType, icon: shortAnswerIcon },
+	{ label: "Long Answer", type: LongAnwerFieldType, icon: longAnswerIcon },
+	{ label: "Date", type: DateFieldType, icon: dateIcon },
+	{ label: "URL", type: UrlFieldType, icon: urlIcon },
+];

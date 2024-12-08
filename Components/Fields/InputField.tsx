@@ -12,12 +12,13 @@ const InputField: React.FC<inputFieldProps> = ({
 	changeEvent = () => {},
 	isNoBorderVariant = false,
 	classes = "",
+	isFormCreating = false,
 }): ReactElement => {
 	return (
 		<input
 			name={name}
 			type={type}
-			disabled={disabled}
+			disabled={isFormCreating || disabled}
 			className={`${
 				isNoBorderVariant ? "no-border-variant" : "border border-gray-200s"
 			} rounded-md p-1 w-full ${classes}`}

@@ -19,6 +19,7 @@ import InputField from "@/Components/Fields/InputField";
 import TextareaField from "@/Components/Fields/TextareaField";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
+	name = "",
 	title = "",
 	description = "",
 	placeholder = "",
@@ -26,21 +27,45 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	maxLength = 200,
 	fieldType = "",
 	disabled = false,
+	isFormCreating = false,
 }): ReactElement => {
 	const fieldProps = {
 		disabled,
 		placeholder,
+		name,
 		title,
 		changeEvent: () => {},
 		isRequired,
 		maxLength,
+		isFormCreating,
 	};
 	return (
 		<div className="border border-gray-200 rounded-xl p-4  w-full flex flex-col gap-2">
 			<div className="flex justify-between items-start">
-				<div className="flex flex-col gap-1 ">
-					{title ? <label className="font-semibold">{title}</label> : null}
-					{description ? <label className="">{description}</label> : null}
+				<div className="w-full flex flex-col gap-1 ">
+					{isFormCreating ? (
+						<InputField
+							placeholder={title}
+							changeEvent={() => {}}
+							isRequired={false}
+							isNoBorderVariant={true}
+							classes="w-full"
+						/>
+					) : title ? (
+						<label className="font-semibold">{title}</label>
+					) : null}
+
+					{isFormCreating ? (
+						<InputField
+							placeholder={description}
+							changeEvent={() => {}}
+							isRequired={false}
+							isNoBorderVariant={true}
+							classes="w-full"
+						/>
+					) : description ? (
+						<label className="font-semibold">{description}</label>
+					) : null}
 				</div>
 				<div className="flex gap-2">
 					<NextImage alt="dropdown icon" src={dropdownIcon} />
@@ -54,7 +79,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 			</div>
 
 			{fieldType == SingleSelectFieldType ? (
-				<SingleSelectField options={[]} isRequired={false} name={"123"} />
+				<SingleSelectField options={[]} {...fieldProps} />
 			) : null}
 
 			{fieldType == ShortAnswerFieldType ? (
@@ -62,20 +87,10 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 			) : null}
 
 			{fieldType == LongAnwerFieldType ? (
-				<TextareaField
-					placeholder={placeholder}
-					isRequired={isRequired}
-					maxLength={maxLength}
-				/>
+				<TextareaField {...fieldProps} />
 			) : null}
 
-			{fieldType == DateFieldType ? (
-				<DateInputField
-					placeholder={""}
-					isRequired={false}
-					changeEvent={() => {}}
-				/>
-			) : null}
+			{fieldType == DateFieldType ? <DateInputField {...fieldProps} /> : null}
 		</div>
 	);
 };

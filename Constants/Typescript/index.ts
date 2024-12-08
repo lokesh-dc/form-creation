@@ -1,6 +1,7 @@
 import { fieldDisabled, fieldOrder, fieldType, formFields, formTitleField } from "../Fields";
 
 export interface fieldWrapperProps {
+    name: string;
     title: string;
     fieldType: string;
     description: string;
@@ -8,7 +9,8 @@ export interface fieldWrapperProps {
     isRequired: boolean;
     maxLength?: number;
     options?: Array<string>;
-    disabled: boolean
+    disabled: boolean;
+    isFormCreating: boolean;
 }
 
 export interface imageProps {
@@ -27,6 +29,7 @@ export interface inputFieldCommonprops {
     autofocus?: boolean;
     min?: string;
     max?: string;
+    isFormCreating?: boolean
 }
 
 
@@ -81,5 +84,12 @@ export interface creationFormStateProps {
 
 
 export interface fieldsContainer {
-    data?: Array<fieldValidator>
+    data?: Array<fieldValidator>;
+    isFormCreating: boolean
+}
+
+export interface questionTypeProps {
+    buttonTitle: string;
+    buttonIconSrc: string;
+    handleFieldAddition: Function;
 }

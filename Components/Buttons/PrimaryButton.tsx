@@ -23,7 +23,7 @@ const PrimaryButton: React.FC<ButtonProps> = ({
 					actionOnClick();
 					event.preventDefault();
 				}}
-				className={`font-semibold flex gap-1 items-center py-1 px-2 border border-gray-200 rounded-xl ${buttonStyles[buttonType]} ${classes}`}
+				className={`font-semibold flex gap-1 justify-center items-center py-1 px-2 border border-gray-200 rounded-xl ${buttonStyles[buttonType]} ${classes}`}
 			>
 				{leftIcon ? <NextImage src={leftIcon} height={10} width={10} /> : null}
 				{title}

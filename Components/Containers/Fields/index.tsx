@@ -4,7 +4,10 @@ import FieldWrapper from "@/Components/Wrappers/Fields";
 
 import { fieldsContainer } from "@/Constants/Typescript";
 
-const FieldsContainer: React.FC<fieldsContainer> = ({ data }): ReactElement => {
+const FieldsContainer: React.FC<fieldsContainer> = ({
+	data,
+	isFormCreating = false,
+}): ReactElement => {
 	return (
 		<>
 			{data && Array.isArray(data) && data?.length
@@ -18,6 +21,8 @@ const FieldsContainer: React.FC<fieldsContainer> = ({ data }): ReactElement => {
 							isRequired={false}
 							fieldType={fieldType}
 							disabled={disabled}
+							isFormCreating={isFormCreating}
+							name={""}
 						/>
 				  ))
 				: null}

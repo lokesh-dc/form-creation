@@ -1,4 +1,3 @@
-import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import {
 	creationFormStateProps,
 	formCreationProps,
@@ -8,17 +7,18 @@ import React, { ReactElement, useState } from "react";
 import PreviewIcon from "@/public/external-link.svg";
 import addQuestionIcon from "@/public/add-icon.svg";
 
-import InputField from "@/Components/Fields/InputField";
 import {
 	fieldDisabled,
 	fieldOrder,
 	fieldType,
-	formFields,
 	formTitleField,
 	ShortAnswerFieldType,
-	SingleSelectFieldType,
 } from "@/Constants/Fields";
+
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import FieldsContainer from "@/Components/Containers/Fields";
+import QuestionsTypeDropDown from "@/Components/Dropdowns/QuestionsType";
+import InputField from "@/Components/Fields/InputField";
 
 const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 	const [formDetails, setFormDetails] = useState<creationFormStateProps>({});
@@ -31,6 +31,7 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 		try {
 			const { name, value } = event?.target;
 			setFormDetails({
+				...formDetails,
 				[name]: value,
 			});
 		} catch (err) {}
@@ -38,10 +39,10 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 		}
 	};
 
-	const handleFieldAddition = () => {
+	const handleFieldAddition = ({ type }: { type: string }) => {
 		const initialFieldSetup = {
 			id: "",
-			[fieldType]: ShortAnswerFieldType,
+			[fieldType]: type || ShortAnswerFieldType,
 			[fieldOrder]: 1,
 			[fieldDisabled]: true,
 		};
@@ -73,13 +74,11 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			</div>
 			<hr />
 			<div className="p-2 flex items-center flex-col gap-2">
-				<FieldsContainer data={formDetails?.formFields} />
-				<PrimaryButton
-					title="Add Question"
-					actionOnClick={handleFieldAddition}
-					buttonType={"secondary"}
-					leftIcon={addQuestionIcon}
-					classes="w-fit"
+				<FieldsContainer data={formDetails?.formFields} isFormCreating={true} />
+				<QuestionsTypeDropDown
+					buttonTitle="Add Question"
+					buttonIconSrc={addQuestionIcon}
+					handleFieldAddition={handleFieldAddition}
 				/>
 			</div>
 		</div>
