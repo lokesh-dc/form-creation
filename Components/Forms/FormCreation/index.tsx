@@ -95,7 +95,7 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 		}
 	};
 
-	const handleFormPublishing = () => {
+	const handleFormPublishing = async () => {
 		if (!formDetails[formTitleField]) {
 			setFormErrors({
 				...formErrors,
@@ -116,8 +116,10 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			return;
 		}
 
-		publishForm(formDetails);
+		await publishForm(formDetails);
 		setFormErrors({});
+
+		window.open(`/form/${formDetails?.id}`, "_blank");
 	};
 
 	return (
