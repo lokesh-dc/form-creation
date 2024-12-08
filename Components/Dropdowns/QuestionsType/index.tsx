@@ -36,6 +36,7 @@ const QuestionsType: React.FC<questionTypeProps> = ({
 				<div className="bg-gray-100 rounded-md p-1 px-2">Input Types</div>
 				{Object.values(fieldTypeDetails)?.map(({ label, icon, type }) => (
 					<button
+						key={type}
 						onClick={() => {
 							handleDropdownSelection({ type });
 							toggleMenuVisibility(!isMenuVisible);

@@ -18,7 +18,7 @@ const InputField: React.FC<inputFieldProps> = ({
 		<input
 			name={name}
 			type={type}
-			disabled={isFormCreating || disabled}
+			disabled={isFormCreating || disabled ? true : false}
 			className={`${
 				isNoBorderVariant ? "no-border-variant" : "border border-gray-200s"
 			} rounded-md p-1 w-full ${classes}`}

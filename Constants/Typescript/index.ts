@@ -92,6 +92,7 @@ export interface fieldValidator {
 }
 
 export interface creationFormStateProps {
+    id: string;
     [formTitleField]?: string;
     [formFields]?: Array<fieldValidator>
 }
