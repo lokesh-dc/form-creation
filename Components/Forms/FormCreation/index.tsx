@@ -1,8 +1,10 @@
+import React, { ReactElement, useState } from "react";
+import { nanoid } from "nanoid";
 import {
 	creationFormStateProps,
+	fieldValidator,
 	formCreationProps,
 } from "@/Constants/Typescript";
-import React, { ReactElement, useState } from "react";
 
 import PreviewIcon from "@/public/external-link.svg";
 import addQuestionIcon from "@/public/add-icon.svg";
@@ -41,7 +43,7 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 
 	const handleFieldAddition = ({ type }: { type: string }) => {
 		const initialFieldSetup = {
-			id: "",
+			id: nanoid(),
 			[fieldType]: type || ShortAnswerFieldType,
 			[fieldOrder]: 1,
 			[fieldDisabled]: true,
@@ -54,6 +56,27 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			};
 		});
 	};
+
+	const handleFieldChanges = (field: fieldValidator) => {
+		const fields = formDetails?.formFields || [];
+
+		for (let index = 0; index < fields?.length; index++) {
+			if (field?.id == fields[index]?.id) {
+				let updatedField = {
+					...fields[index],
+					...field,
+				};
+				fields[index] = updatedField;
+				setFormDetails({
+					...formDetails,
+					formFields: fields,
+				});
+				break;
+			}
+		}
+	};
+
+	console.log({ formDetails });
 
 	return (
 		<div className="border border-gray-200 rounded-xl flex flex-col gap-1">
@@ -74,11 +97,15 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 			</div>
 			<hr />
 			<div className="p-2 flex items-center flex-col gap-2">
-				<FieldsContainer data={formDetails?.formFields} isFormCreating={true} />
+				<FieldsContainer
+					data={formDetails?.formFields}
+					isFormCreating={true}
+					handleFieldChanges={handleFieldChanges}
+				/>
 				<QuestionsTypeDropDown
 					buttonTitle="Add Question"
 					buttonIconSrc={addQuestionIcon}
-					handleFieldAddition={handleFieldAddition}
+					handleDropdownSelection={handleFieldAddition}
 				/>
 			</div>
 		</div>

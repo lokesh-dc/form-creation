@@ -17,14 +17,26 @@ import singleSelectIcon from "@/public/fields/single-select-icon.svg";
 import urlIcon from "@/public/fields/url-icon.svg";
 import dateIcon from "@/public/fields/date-icon.svg";
 
-export const fieldTypes = [
-	{
+export const fieldTypeDetails = {
+	[SingleSelectFieldType]: {
 		label: "Single Select",
-		type: SingleSelectFieldType,
 		icon: singleSelectIcon,
+		type: SingleSelectFieldType,
 	},
-	{ label: "Short Answer", type: ShortAnswerFieldType, icon: shortAnswerIcon },
-	{ label: "Long Answer", type: LongAnwerFieldType, icon: longAnswerIcon },
-	{ label: "Date", type: DateFieldType, icon: dateIcon },
-	{ label: "URL", type: UrlFieldType, icon: urlIcon },
-];
+	[ShortAnswerFieldType]: {
+		label: "Short Answer",
+		type: ShortAnswerFieldType,
+		icon: shortAnswerIcon,
+	},
+	[LongAnwerFieldType]: {
+		label: "Long Answer",
+		type: LongAnwerFieldType,
+		icon: longAnswerIcon,
+	},
+	[DateFieldType]: {
+		label: "Date",
+		type: DateFieldType,
+		icon: dateIcon,
+	},
+	[UrlFieldType]: { label: "URL", type: UrlFieldType, icon: urlIcon },
+};

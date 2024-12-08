@@ -1,13 +1,16 @@
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import NextImage from "@/Components/Wrappers/Images";
-import { fieldTypes } from "@/Constants/Fields";
+import { fieldTypeDetails } from "@/Constants/Fields";
 import { questionTypeProps } from "@/Constants/Typescript";
 import React, { ReactElement, useState } from "react";
 
 const QuestionsType: React.FC<questionTypeProps> = ({
 	buttonTitle = "",
 	buttonIconSrc = "",
-	handleFieldAddition,
+	buttonRightIcon = "",
+	handleDropdownSelection,
+	buttonSizes = {},
+	isButtonNoBorderVariant = false,
 }): ReactElement => {
 	const [isMenuVisible, toggleMenuVisibility] = useState(false);
 	return (
@@ -17,19 +20,22 @@ const QuestionsType: React.FC<questionTypeProps> = ({
 				actionOnClick={() => toggleMenuVisibility(!isMenuVisible)}
 				buttonType={"secondary"}
 				leftIcon={buttonIconSrc}
-				classes="w-[200px]"
+				rightIcon={buttonRightIcon}
+				classes={`${buttonTitle ? "w-[200px]" : ""}`}
+				buttonSizes={buttonSizes}
+				isNoBorderVariant={isButtonNoBorderVariant}
 			/>
 
 			<div
-				className={`absolute p-2 rounded-xl top-[110%] ${
+				className={`absolute p-2 rounded-xl z-2000 min-w-[200px] top-[110%] right-0 ${
 					isMenuVisible ? "flex flex-col gap-1" : "hidden"
 				} bg-white shadow-md w-full cursor-pointer border border-gray-200`}
 			>
 				<div className="bg-gray-100 rounded-md p-1 px-2">Input Types</div>
-				{fieldTypes?.map(({ label, icon, type }) => (
+				{Object.values(fieldTypeDetails)?.map(({ label, icon, type }) => (
 					<button
 						onClick={() => {
-							handleFieldAddition({ type });
+							handleDropdownSelection({ type });
 							toggleMenuVisibility(!isMenuVisible);
 						}}
 						className="flex gap-2 p-1 rounded-md hover:bg-gray-100"

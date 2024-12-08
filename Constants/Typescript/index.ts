@@ -2,6 +2,7 @@ import { fieldDisabled, fieldOrder, fieldType, formFields, formTitleField } from
 
 export interface fieldWrapperProps {
     name: string;
+    fieldId: string;
     title: string;
     fieldType: string;
     description: string;
@@ -11,6 +12,8 @@ export interface fieldWrapperProps {
     options?: Array<string>;
     disabled: boolean;
     isFormCreating: boolean;
+    handleFieldChanges: Function;
+
 }
 
 export interface imageProps {
@@ -59,7 +62,12 @@ export interface ButtonProps {
     buttonType: string;
     leftIcon?: string;
     rightIcon?: string;
-    classes?: string
+    classes?: string;
+    buttonSizes?: {
+        height?: number;
+        width?: number
+    };
+    isNoBorderVariant?: boolean
 }
 
 
@@ -72,6 +80,7 @@ export interface formCreationProps {
 }
 
 export interface fieldValidator {
+    id: string;
     [fieldType]: string;
     [fieldOrder]: number;
     [fieldDisabled]: boolean;
@@ -85,11 +94,19 @@ export interface creationFormStateProps {
 
 export interface fieldsContainer {
     data?: Array<fieldValidator>;
-    isFormCreating: boolean
+    isFormCreating: boolean;
+    handleFieldChanges: Function;
+
 }
 
 export interface questionTypeProps {
-    buttonTitle: string;
-    buttonIconSrc: string;
-    handleFieldAddition: Function;
+    buttonTitle?: string | undefined;
+    buttonIconSrc?: string;
+    handleDropdownSelection: Function;
+    buttonSizes?: {
+        height?: number;
+        width?: number
+    };
+    buttonRightIcon?: string;
+    isButtonNoBorderVariant?: boolean
 }

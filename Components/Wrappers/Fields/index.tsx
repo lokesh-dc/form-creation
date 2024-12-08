@@ -2,11 +2,12 @@ import React, { ReactElement } from "react";
 
 import { fieldWrapperProps } from "@/Constants/Typescript";
 
-import dropdownIcon from "@/public/fields/long-answer-icon.svg";
 import reorderIcon from "@/public/reorder-icon.svg";
+import dropdownIcon from "@/public/dropdown.svg";
 
 import {
 	DateFieldType,
+	fieldTypeDetails,
 	LongAnwerFieldType,
 	ShortAnswerFieldType,
 	SingleSelectFieldType,
@@ -17,8 +18,10 @@ import DateInputField from "@/Components/Fields/DateInputField";
 import SingleSelectField from "@/Components/Fields/SignleSelectField";
 import InputField from "@/Components/Fields/InputField";
 import TextareaField from "@/Components/Fields/TextareaField";
+import QuestionsTypeDropdown from "@/Components/Dropdowns/QuestionsType";
 
 const FieldWrapper: React.FC<fieldWrapperProps> = ({
+	fieldId = "",
 	name = "",
 	title = "",
 	description = "",
@@ -28,6 +31,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 	fieldType = "",
 	disabled = false,
 	isFormCreating = false,
+	handleFieldChanges,
 }): ReactElement => {
 	const fieldProps = {
 		disabled,
@@ -68,7 +72,15 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 					) : null}
 				</div>
 				<div className="flex gap-2">
-					<NextImage alt="dropdown icon" src={dropdownIcon} />
+					<QuestionsTypeDropdown
+						buttonIconSrc={fieldTypeDetails[fieldType]?.icon}
+						buttonSizes={{ height: 20, width: 20 }}
+						buttonRightIcon={dropdownIcon}
+						isButtonNoBorderVariant={true}
+						handleDropdownSelection={({ type }: { type: string }) => {
+							handleFieldChanges({ id: fieldId, fieldType: type });
+						}}
+					/>
 					<NextImage
 						alt="dropdown icon"
 						src={reorderIcon}
