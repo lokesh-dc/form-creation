@@ -9,7 +9,10 @@ import { submitForm } from "@/backend/submissions/index";
 import NextImage from "@/Components/Wrappers/Images";
 
 const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
-	const [formData, setFormData] = useState({});
+	const [formData, setFormData] = useState({
+		formTitle: formDetails?.formTitle,
+		formId: formDetails?.id,
+	});
 	const [formComplete, setFormComplete] = useState(0);
 	const [formStatus, setFormStatus] = useState("");
 
@@ -18,7 +21,7 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 		let complete = 0;
 		for (let key of fields) {
 			// @ts-ignore
-			if (formData[key]) complete++;
+			if (formData[key]?.value) complete++;
 		}
 
 		let formCompletion = (complete / fields?.length) * 100;
@@ -32,18 +35,22 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 	const handleFormChanges = ({
 		name,
 		value,
+		title,
 	}: {
 		name: string;
 		value: string;
+		title: string;
 	}) => {
 		setFormData({
 			...formData,
-			[name]: value,
+			[name]: { value, title },
 		});
 	};
 
-	const handleFormSubmission = async (event: { prevetDefault: () => void }) => {
-		event.prevetDefault();
+	const handleFormSubmission = async (event: {
+		preventDefault: () => void;
+	}) => {
+		event.preventDefault();
 		const response = await submitForm(formData);
 
 		if (response?.status) {
@@ -55,22 +62,24 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 		<div className="w-[500px] flex flex-col gap-5 border rounded-xl border-gray-200">
 			<div className="px-4 py-2 flex justify-between items-start md:items-center flex-col md:flex-row">
 				<h1 className="text-xl font-bold">{formDetails?.formTitle}</h1>
-				<div>
-					<div>Form Completeness - {formComplete}%</div>
-					<div className="min-w-[180px] h-[5px] rounded-md bg-gray-200">
-						<div
-							style={{ width: `${formComplete}%` }}
-							className={`min-h-[5px] bg-green-600 rounded-md`}
-						></div>
+				{formStatus != "complete" ? (
+					<div>
+						<div>Form Completeness - {formComplete}%</div>
+						<div className="min-w-[180px] h-[5px] rounded-md bg-gray-200">
+							<div
+								style={{ width: `${formComplete}%` }}
+								className={`min-h-[5px] bg-green-600 rounded-md`}
+							></div>
+						</div>
 					</div>
-				</div>
+				) : null}
 			</div>
 			<hr />
 
 			{formStatus == "completed" ? (
 				<>
-					<div className="flex justify-center items-center">
-						<NextImage src={successIcon} height={100} width={100} />
+					<div className="flex flex-col gap-4 justify-center items-center">
+						<NextImage src={successIcon} height={70} width={70} />
 						<p className="font-bold text-2xl">Form Submitted Successfully </p>
 					</div>
 				</>

@@ -24,7 +24,7 @@ const PrimaryButton: React.FC<ButtonProps> = ({
 			<button
 				disabled={disabled ? true : false}
 				onClick={(event: React.MouseEvent) => {
-					actionOnClick();
+					actionOnClick(event);
 					event.preventDefault();
 				}}
 				className={`disabled:bg-gray-100 disabled:cursor-not-allowed font-semibold flex gap-1 justify-center items-center ${

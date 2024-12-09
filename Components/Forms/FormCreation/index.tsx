@@ -95,13 +95,15 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 		}
 	};
 
-	const handleFormPublishing = async () => {
-		if (!formDetails[formTitleField]) {
-			setFormErrors({
-				...formErrors,
-				common: "Please add form title",
-			});
-			return;
+	const handleFormPublishing = async ({ isPublishing = true }) => {
+		if (isPublishing) {
+			if (!formDetails[formTitleField]) {
+				setFormErrors({
+					...formErrors,
+					common: "Please add form title",
+				});
+				return;
+			}
 		}
 
 		if (
@@ -144,7 +146,7 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 					/>
 					<PrimaryButton
 						title="Preview"
-						actionOnClick={() => console.log("primary - clicked")}
+						actionOnClick={() => handleFormPublishing({ isPublishing: false })}
 						buttonType={"secondary"}
 						rightIcon={PreviewIcon}
 					/>
@@ -168,7 +170,7 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 				<div className="flex justify-between w-full p-4 bg-gray-100 absolute right-0 bottom-0">
 					<PrimaryButton
 						title="Save as Draft"
-						actionOnClick={() => {}}
+						actionOnClick={() => handleFormPublishing({ isPublishing: false })}
 						buttonType={""}
 					/>
 					<PrimaryButton

@@ -47,7 +47,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 		name,
 		title,
 		changeEvent: ({ name, value }: { name: string; value: string }) => {
-			handleFieldChanges({ name, value });
+			handleFieldChanges({ name, value, title });
 		},
 		isRequired,
 		maxLength,
@@ -64,8 +64,8 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 					{isFormCreating == fieldId ? (
 						<InputField
 							placeholder={title}
-							changeEvent={(event: { target: { value: any } }) => {
-								const { value } = event.target;
+							changeEvent={({ value }: { value: string }) => {
+								console.log({ value });
 								changeEvent({ name: "title", value });
 							}}
 							isRequired={false}
@@ -79,8 +79,7 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 					{isFormCreating == fieldId ? (
 						<InputField
 							placeholder={description}
-							changeEvent={(event: { target: { value: any } }) => {
-								const { value } = event.target;
+							changeEvent={({ value }: { value: string }) => {
 								changeEvent({ name: "description", value });
 							}}
 							isRequired={false}

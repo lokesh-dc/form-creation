@@ -11,7 +11,9 @@ export default async function FormPage({
 
 	return (
 		<div className="h-screen flex justify-center items-start md:items-center ">
-			{formDetails?.formTitle ? (
+			{formDetails?.formTitle &&
+			(Array.isArray(formDetails?.formField) ||
+				!formDetails?.formField?.length) ? (
 				<FormSubmission formDetails={formDetails} />
 			) : (
 				<p className="font-bold text-xl">Sorry, Couldn't find your form</p>

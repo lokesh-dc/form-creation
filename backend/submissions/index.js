@@ -18,3 +18,17 @@ export const submitForm = async (details) => {
 		status: false,
 	};
 };
+
+export const getFormSubmissions = async (id) => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_BASELINK}/api/form/${id}/submissions`
+	)
+		.then((res) => res.json())
+		.then((res) => res)
+		.catch((err) => console.log(err));
+
+	if (res) {
+		return res;
+	}
+	return {};
+};

@@ -4,6 +4,9 @@ import path from 'path';
 export async function POST(request: Request) {
     try {
         const res = await request.json();
+        const { formId, formTitle } = res;
+        delete res?.formId;
+        delete res?.formTitle;
 
         const filePath = path.join(process.cwd(), 'backend/submissions/data.json');
 
@@ -12,7 +15,10 @@ export async function POST(request: Request) {
 
         existingData = {
             ...existingData,
-            [res.formId]: res
+            [formId]: {
+                title: formTitle,
+                data: [...(existingData[formId]?.data || []), res]
+            }
         }
 
         fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
