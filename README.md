@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Form Builder Assignment
+## Features
+### 1. **Form Creation**
+- Start with an empty form creation interface.
+- Add questions dynamically by selecting input types from the following options:
+  1. **Short Answer**
+  2. **Long Answer**
+  3. **Single Select**
+  4. **Number**
+  5. **URL**
+
+### 2. **Form Preview**
+- See all your created forms in a single place 
+- View the created form in a preview mode before filling it out.
+- Share the form with your target users & see the data filled in tabular format.
+
+### 3. **Form Filling**
+- Display form completeness as a percentage, showing the progress of completed fields.
+
+### 4. **Form Submission**
+- Display a success message upon form submission.
+
+## Technologies Used
+
+- **Next.js** - server-side rendering and frontend development.
+- **CSS Modules** for styling.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Installation
 
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/lokesh-dc/form-creation.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd form-builder
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+2. Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+### Building for Production
+
+To build the application for production:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+form-builder/
+├── Components/      # Reusable UI components
+├── backend/         # Reusable utility functionns - form submission & retrieval
+├── app/             # Application pages
+├── app/             # APIs
+├── public/          # Static assets
+└── README.md        # Project documentation
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Implementation Details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Form Creation
+- Users can dynamically add questions to the form by selecting from the 5 predefined input types.
+- Each question can be customized with labels, placeholders, and required status.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Form Preview
+- Displays a read-only version of the form for review.
+- Ensures proper layout and usability before submission.
 
-## Deploy on Vercel
+### 3. Form Filling
+- Tracks the completion of required fields.
+- Displays a percentage progress indicator.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Form Submission
+- Validates all fields before submission.
+- Shows a success message upon successful submission.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Future Enhancements
+- Drag-and-drop functionality to reorder questions.
+- Advanced animations for question transitions.
+- Additional input types, such as date and file upload.
+
+
