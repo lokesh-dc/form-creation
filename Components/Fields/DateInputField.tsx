@@ -10,6 +10,7 @@ const DateInputField: React.FC<inputFieldProps> = ({
 	placeholder = "",
 	changeEvent,
 	disabled = "",
+	name = "",
 }) => {
 	return (
 		<>
@@ -17,6 +18,7 @@ const DateInputField: React.FC<inputFieldProps> = ({
 				min={min}
 				max={max}
 				type="date"
+				name={name}
 				placeholder={placeholder}
 				isRequired={false}
 				disabled={disabled ? true : false}

@@ -27,7 +27,9 @@ const InputField: React.FC<inputFieldProps> = ({
 			maxLength={maxLength}
 			onChange={(event: React.FormEvent<HTMLInputElement>) => {
 				event.preventDefault();
-				changeEvent(event);
+				// @ts-ignore
+				const { name, value } = event.target;
+				changeEvent({ name, value });
 			}}
 		/>
 	);

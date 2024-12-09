@@ -46,7 +46,9 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 		placeholder,
 		name,
 		title,
-		changeEvent: changeEvent,
+		changeEvent: ({ name, value }: { name: string; value: string }) => {
+			handleFieldChanges({ name, value });
+		},
 		isRequired,
 		maxLength,
 		isFormCreating,

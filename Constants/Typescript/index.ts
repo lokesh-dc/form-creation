@@ -34,6 +34,7 @@ export interface inputFieldCommonprops {
     min?: string;
     max?: string;
     isFormCreating?: string
+    changeEvent: Function
 }
 
 
