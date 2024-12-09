@@ -22,11 +22,6 @@ import urlIcon from "@/public/fields/url-icon.svg";
 import dateIcon from "@/public/fields/date-icon.svg";
 
 export const fieldTypeDetails = {
-	[SingleSelectFieldType]: {
-		label: "Single Select",
-		icon: singleSelectIcon,
-		type: SingleSelectFieldType,
-	},
 	[ShortAnswerFieldType]: {
 		label: "Short Answer",
 		type: ShortAnswerFieldType,
@@ -43,4 +38,9 @@ export const fieldTypeDetails = {
 		icon: dateIcon,
 	},
 	[UrlFieldType]: { label: "URL", type: UrlFieldType, icon: urlIcon },
+	[SingleSelectFieldType]: {
+		label: "Single Select",
+		icon: singleSelectIcon,
+		type: SingleSelectFieldType,
+	},
 };

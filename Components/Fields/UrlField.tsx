@@ -7,14 +7,17 @@ import { inputFieldProps } from "@/Constants/Typescript";
 const UrlInputField: React.FC<inputFieldProps> = ({
 	placeholder = "",
 	changeEvent,
+	disabled = "",
+	name = "",
 }) => {
 	return (
 		<>
 			<InputField
+				name={name}
 				type="url"
 				placeholder={placeholder}
 				isRequired={false}
-				disabled={true}
+				disabled={disabled ? true : false}
 				changeEvent={changeEvent}
 			/>
 		</>

@@ -7,6 +7,7 @@ import { formDetailsProps } from "@/Constants/Typescript";
 import successIcon from "@/public/success.svg";
 import { submitForm } from "@/backend/submissions/index";
 import NextImage from "@/Components/Wrappers/Images";
+import Link from "next/link";
 
 const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 	const [formData, setFormData] = useState({
@@ -62,7 +63,7 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 		<div className="w-[500px] flex flex-col gap-5 border rounded-xl border-gray-200">
 			<div className="px-4 py-2 flex justify-between items-start md:items-center flex-col md:flex-row">
 				<h1 className="text-xl font-bold">{formDetails?.formTitle}</h1>
-				{formStatus != "complete" ? (
+				{formStatus != "completed" ? (
 					<div>
 						<div>Form Completeness - {formComplete}%</div>
 						<div className="min-w-[180px] h-[5px] rounded-md bg-gray-200">
@@ -78,9 +79,16 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 
 			{formStatus == "completed" ? (
 				<>
-					<div className="flex flex-col gap-4 justify-center items-center">
+					<div className="flex flex-col gap-4 p-4 justify-center items-center">
 						<NextImage src={successIcon} height={70} width={70} />
 						<p className="font-bold text-2xl">Form Submitted Successfully </p>
+						<Link
+							target="_blank"
+							className="text-blue-600"
+							href={`/form/${formData?.formId}/submissions`}
+						>
+							go to submission &gt;
+						</Link>
 					</div>
 				</>
 			) : (

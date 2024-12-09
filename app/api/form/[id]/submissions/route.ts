@@ -17,11 +17,11 @@ export async function GET(request: Request,
         let submitted = []
         let { formFields: field, formTitle } = formdata[id];
         for (let key = 0; key < field?.length; key++) {
-            let { id: fieldId, title: fieldTitle } = field[key]
+            let { id: fieldId, title: fieldTitle, fieldType } = field[key]
             let fieldSubmissions = []
             let questionData = data[id]?.data || []
             for (let sub = 0; sub < questionData.length; sub++) {
-                fieldSubmissions.push(questionData[sub][fieldId])
+                fieldSubmissions.push({ value: questionData[sub][fieldId], type: fieldType })
             }
 
             submitted.push({

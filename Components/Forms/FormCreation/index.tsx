@@ -41,19 +41,24 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 	});
 	const [isFormEditionPhase, toggleFormEditionPhase] = useState("");
 
-	const handleFormChanges = (event: {
-		preventDefault(): unknown;
-		target: { name: any; value: any };
+	const handleFormChanges = ({
+		name,
+		value,
+	}: {
+		name: string;
+		value: string;
 	}) => {
-		event.preventDefault();
 		try {
-			const { name, value } = event?.target;
 			setFormDetails({
 				...formDetails,
 				[name]: value,
 			});
-		} catch (err) {}
-		{
+			setFormErrors({
+				...formErrors,
+				common: "",
+			});
+		} catch (err) {
+			console.log(err);
 		}
 	};
 
@@ -167,7 +172,7 @@ const FormCreation: React.FC<formCreationProps> = (): ReactElement => {
 						handleDropdownSelection={handleFieldAddition}
 					/>
 				</div>
-				<div className="flex justify-between w-full p-4 bg-gray-100 absolute right-0 bottom-0">
+				<div className="flex justify-between w-full p-4 bg-gray-100 ">
 					<PrimaryButton
 						title="Save as Draft"
 						actionOnClick={() => handleFormPublishing({ isPublishing: false })}
