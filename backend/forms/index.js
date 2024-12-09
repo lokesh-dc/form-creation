@@ -3,6 +3,9 @@ export const publishForm = async (details) => {
 		`${process.env.NEXT_PUBLIC_API_BASELINK}/api/form/create`,
 		{
 			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify(details),
 		}
 	);
