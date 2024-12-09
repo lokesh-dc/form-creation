@@ -52,7 +52,11 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 		isFormCreating,
 	};
 	return (
-		<div className="border border-gray-200 rounded-xl p-4  w-full flex flex-col gap-2">
+		<div
+			className={`${
+				isAdminSideForm ? "border border-gray-200 p-4" : ""
+			} rounded-xl w-full flex flex-col gap-2`}
+		>
 			<div className="flex justify-between items-start">
 				<div className="w-full flex flex-col gap-1 ">
 					{isFormCreating == fieldId ? (
@@ -82,28 +86,30 @@ const FieldWrapper: React.FC<fieldWrapperProps> = ({
 							classes="w-full"
 						/>
 					) : description ? (
-						<label className="font-semibold">{description}</label>
+						<label className="">{description}</label>
 					) : null}
 				</div>
-				<div className="flex gap-2">
-					<QuestionsTypeDropdown
-						// @ts-ignore
-						buttonIconSrc={fieldTypeDetails[fieldType]?.icon}
-						buttonSizes={{ height: 20, width: 20 }}
-						buttonRightIcon={dropdownIcon}
-						isButtonNoBorderVariant={true}
-						handleDropdownSelection={({ type }: { type: string }) => {
-							handleFieldChanges({ id: fieldId, fieldType: type });
-						}}
-						disabled={""}
-					/>
-					<NextImage
-						alt="dropdown icon"
-						src={reorderIcon}
-						height={20}
-						width={20}
-					/>
-				</div>
+				{isAdminSideForm ? (
+					<div className="flex gap-2">
+						<QuestionsTypeDropdown
+							// @ts-ignore
+							buttonIconSrc={fieldTypeDetails[fieldType]?.icon}
+							buttonSizes={{ height: 20, width: 20 }}
+							buttonRightIcon={dropdownIcon}
+							isButtonNoBorderVariant={true}
+							handleDropdownSelection={({ type }: { type: string }) => {
+								handleFieldChanges({ id: fieldId, fieldType: type });
+							}}
+							disabled={""}
+						/>
+						<NextImage
+							alt="dropdown icon"
+							src={reorderIcon}
+							height={20}
+							width={20}
+						/>
+					</div>
+				) : null}
 			</div>
 
 			{fieldType == SingleSelectFieldType ? (

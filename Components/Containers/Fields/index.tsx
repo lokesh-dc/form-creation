@@ -28,8 +28,10 @@ const FieldsContainer: React.FC<fieldsContainer> = ({
 								fieldId={fieldId}
 								title={title || "Write a question"}
 								description={
-									description ||
-									"Write a help text or caption (leave empty if not needed)."
+									isAdminSideForm
+										? description ||
+										  "Write a help text or caption (leave empty if not needed)."
+										: description
 								}
 								placeholder={""}
 								isRequired={false}

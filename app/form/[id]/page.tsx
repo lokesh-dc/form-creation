@@ -1,4 +1,5 @@
 import { getFormDetails } from "@/backend/forms";
+import FormSubmission from "@/Components/Forms/FormSubmission";
 
 export default async function FormPage({
 	params,
@@ -9,8 +10,8 @@ export default async function FormPage({
 	const formDetails = await getFormDetails(formId);
 
 	return (
-		<div className="p-4">
-			<h1 className="text-xl text-bold">{formDetails?.formTitle}</h1>
+		<div className="h-screen flex justify-center items-start md:items-center ">
+			<FormSubmission formDetails={formDetails} />
 		</div>
 	);
 }

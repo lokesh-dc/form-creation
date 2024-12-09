@@ -5,7 +5,7 @@ export interface fieldWrapperProps {
     fieldId: string;
     title: string;
     fieldType: string;
-    description: string;
+    description?: string;
     placeholder: string;
     isRequired: boolean;
     maxLength?: number;
@@ -117,4 +117,8 @@ export interface questionTypeProps {
     };
     buttonRightIcon?: string;
     isButtonNoBorderVariant?: boolean
+}
+
+export interface formDetailsProps {
+    formDetails: creationFormStateProps;
 }
