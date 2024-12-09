@@ -13,9 +13,11 @@ export default async function YourFormsPage() {
 				{(Array.isArray(Object.values(forms)) ? Object.values(forms) : [])?.map(
 					(props) => (
 						<div className="w-fit border border-gray-200 rounded-md p-4">
+							{/* @ts-ignore */}
 							<h1>{props?.formTitle || "Untitled Form"}</h1>
 							<Link
 								className="text-blue-800 text-sm"
+								// @ts-ignore
 								href={`/form/${props?.id}/submissions`}
 							>
 								Go To Submissions
