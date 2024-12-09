@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function NavigationBar() {
 	return (
 		<div className="p-4 shadow-lg flex justify-between gap-3">
-			<Link target="_blank" href={"https://linkedin.com/in/choudhary-lokesh"}>
+			<Link target="_blank" href={"/"}>
 				Lokesh-dc
 			</Link>
 			<div className="flex gap-4">

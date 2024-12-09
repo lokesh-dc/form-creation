@@ -1,7 +1,4 @@
 "use client";
-
-import "./globals.css";
-
 import FormCreation from "@/Components/Forms/FormCreation";
 import NavigationBar from "@/Components/Navigation";
 
