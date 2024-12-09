@@ -3,6 +3,9 @@ export const submitForm = async (details) => {
 		`${process.env.NEXT_PUBLIC_API_BASELINK}/api/form/submit`,
 		{
 			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify(details),
 		}
 	);
