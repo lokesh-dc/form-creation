@@ -20,6 +20,9 @@ export const submitForm = async (details) => {
 };
 
 export const getFormSubmissions = async (id) => {
+	console.log(
+		`${process.env.NEXT_PUBLIC_API_BASELINK}/api/form/${id}/submissions`
+	);
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_API_BASELINK}/api/form/${id}/submissions`
 	)

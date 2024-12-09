@@ -21,7 +21,7 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 		let complete = 0;
 		for (let key of fields) {
 			// @ts-ignore
-			if (formData[key]?.value) complete++;
+			if (formData[key]) complete++;
 		}
 
 		let formCompletion = (complete / fields?.length) * 100;
@@ -43,7 +43,7 @@ const FormSubmission: React.FC<formDetailsProps> = ({ formDetails }) => {
 	}) => {
 		setFormData({
 			...formData,
-			[name]: { value, title },
+			[name]: value,
 		});
 	};
 
