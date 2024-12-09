@@ -1,6 +1,5 @@
 import { getUserForms } from "@/backend/forms";
 import NavigationBar from "@/Components/Navigation";
-import { creationFormStateProps } from "@/Constants/Typescript";
 import Link from "next/link";
 
 export default async function YourFormsPage() {
@@ -15,13 +14,16 @@ export default async function YourFormsPage() {
 						<div className="w-fit border border-gray-200 rounded-md p-4">
 							{/* @ts-ignore */}
 							<h1>{props?.formTitle || "Untitled Form"}</h1>
-							<Link
-								className="text-blue-800 text-sm"
-								// @ts-ignore
-								href={`/form/${props?.id}/submissions`}
-							>
-								Go To Submissions
-							</Link>
+							{/* @ts-ignore */}
+							{props?.id ? (
+								<Link
+									className="text-blue-800 text-sm"
+									// @ts-ignore
+									href={`/form/${props?.id}/submissions`}
+								>
+									Go To Submissions
+								</Link>
+							) : null}
 						</div>
 					)
 				)}
